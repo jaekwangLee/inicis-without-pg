@@ -4,7 +4,7 @@ const getServerDomain = () => {
     const DEV = process.env.DEV;
     switch (DEV) {
         case 'true':
-            return `http://localost:${process.env.PORT}`;
+            return `http://localhost:${process.env.PORT}`;
 
         case 'false':
             return ''; // production domain

@@ -25,7 +25,7 @@ InicisRouter.get('/request/form', (req, res) => {
     return getRequestForm(req, res);
 });
 
-InicisRouter.post('/popup/open/:orderId', (req, res) => {
+InicisRouter.get('/popup/open/:orderId', (req, res) => {
     return openInicisModule(req, res);
 });
 

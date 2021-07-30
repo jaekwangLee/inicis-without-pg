@@ -73,7 +73,7 @@ const getRequestForm = async (req, res) => {
 };
 
 const openInicisModule = async (req, res) => {
-    const { orderId } = req.query;
+    const { orderId } = req.params;
     if (!orderId) {
         return res.send({ status: 'error', data: 'check parameters' });
     }
@@ -152,8 +152,8 @@ const getMobileRequestForm = async (req, res) => {
             P_AMT: price,
             P_GOODS: 'Sample',
             P_UNAME: '홍길동',
-            P_NEXT_URL: getServerDomain() + '/v1/m/pay/after',
-            P_NOTI_URL: getServerDomain() + '/v1/confirm/payment',
+            P_NEXT_URL: getServerDomain() + '/v1/inicis/m/pay/after',
+            P_NOTI_URL: getServerDomain() + '/v1/inicis/confirm/payment',
             P_HPP_METHOD: 1,
             P_CHARSET: 'utf8', // <-- 결과값 한글깨짐 방지
         };
@@ -166,14 +166,14 @@ const getMobileRequestForm = async (req, res) => {
 };
 
 const onSavePaymentInfoWithAuth = async (req, res) => {
-    const { P_STATUS, P_RMESG1, P_TID, P_AMT, P_REQ_URL, P_NOTI } = req.body;
+    const { P_STATUS, P_OID, P_RMESG1, P_TID, P_AMT, P_REQ_URL, P_NOTI } = req.body;
 
     if (P_STATUS !== '00') {
         return res.redirect(getClientDomain() + '/payment/close');
     }
 
     // 결제 관련 데이터 처리
-    return res.redirect(getClientDomain() + `/payment/result`);
+    return res.redirect(getClientDomain() + `/payment/result/${P_OID}`);
 };
 
 export { getNewOrder, onConfirmPayment, getRequestForm, openInicisModule, onSavePaymentInfo, getMobileRequestForm, onSavePaymentInfoWithAuth };

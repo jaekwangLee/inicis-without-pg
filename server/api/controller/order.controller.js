@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { makeOrderId } from '../../util';
+import { getClientDomain } from '../../host';
 
 const getOrderInfo = async (req, res) => {
     const { orderId } = req.params;
@@ -10,9 +12,11 @@ const getOrderInfo = async (req, res) => {
     }
 
     // 결제 이력 조회
+    // 정상처리 되지 않은 주문내역이면
+    // return res.redirect(getClientDomain() + '/shop/list');
 
     const sampleData = {
-        orderId: 'Something',
+        orderId: makeOrderId('sample'),
         service: 'Sample',
         orderAt: dayjs().toDate(),
         receipt: {
