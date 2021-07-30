@@ -1,0 +1,35 @@
+doctype html
+html(lang="ko")
+    head
+        title= title
+        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+        meta(http-equiv="Cache-Control", content="no-cache")
+
+        meta(property="og:title", content= '이니시스 결제')
+        meta(property="og:description", content= '이니시스 결제 연동 해보자')
+        meta(property="og:type" content= 'website')
+
+        meta(name="description" content= '이니시스 결제 연동 해보자')
+        meta(name="type" content= 'website')
+
+        script(src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js", type="text/javascript", charset="UTF-8")
+    body
+        script. 
+            var onPay = function() { INIStdPay.pay("pay_form") }
+            onPay()
+        form(id="pay_form", method="post", accept-charset="UTF-8", hidden='true') 
+            input(type="hidden", name="version", value= info.version)
+            input(type="hidden", name="gopaymethod", value= info.gopaymethod)
+            input(type="hidden", name="mid", value= info.mid)
+            input(type="hidden", name="oid", value= info.oid)
+            input(type="hidden", name="price", value= info.price)
+            input(type="hidden", name="timestamp", value= info.timestamp)
+            input(type="hidden", name="signature", value= info.signature)
+            input(type="hidden", name="mKey", value= info.mKey)
+            input(type="hidden", name="currency", value= info.currency)
+            input(type="hidden", name="goodname", value= info.goodname)
+            input(type="hidden", name="buyername", value= info.buyername)
+            input(type="hidden", name="buyertel", value= info.buyertel)
+            input(type="hidden", name="buyeremail", value= info.buyeremail)
+            input(type="hidden", name="returnUrl", value= info.returnUrl)
+            input(type="hidden", name="closeUrl", value=info.closeUrl)
